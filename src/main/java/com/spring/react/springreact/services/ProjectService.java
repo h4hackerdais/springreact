@@ -28,6 +28,8 @@ public class ProjectService {
         }
     }
 
+
+    // search by project identifier with
     public Project findProjectByIdentifier(String projectid){
         Project project = projectRepository.findByProjectIdentifier(projectid);
 
@@ -37,6 +39,21 @@ public class ProjectService {
 
         return project;
 
+    }
+
+    // get all list
+    public Iterable<Project> findAllProject(){
+        return projectRepository.findAll();
+    }
+
+    // remove by identifier project
+
+    public void deleteProjectByIdentifier(String projectId){
+        Project project = projectRepository.findByProjectIdentifier(projectId);
+        if (project == null){
+            throw new ProjectIdException("Conn't Project with id "+ projectId + " This project does not exits ");
+        }
+    projectRepository.delete(project);
     }
 
 
