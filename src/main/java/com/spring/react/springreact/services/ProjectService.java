@@ -1,6 +1,7 @@
 package com.spring.react.springreact.services;
 
 import com.spring.react.springreact.domain.Project;
+import com.spring.react.springreact.exceptions.ProjectIdException;
 import com.spring.react.springreact.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,21 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+//    INSERT DATA THIS METHOD
     public Project saveOrUpdateProject(Project project){
 //        login add here
-        return projectRepository.save(project);
+        try {
+//         // set indentifier to update case save
+            project.setProjectIdentifier(project.getProjectIdentifier().toLowerCase());
+            return projectRepository.save(project);
+        }catch (Exception e){
+            throw new ProjectIdException("Project ID"+project.getProjectIdentifier().toUpperCase() + " already exists");
+        }
     }
+
+
 }
+
+
+
+
