@@ -22,6 +22,16 @@ public class Project {
     public Project() {
     }
 
+    public Project(String projectName, String projectIdentifier, String description, Date start_data, Date end_date, Date created_At, Date updated_At) {
+        this.projectName = projectName;
+        this.projectIdentifier = projectIdentifier;
+        this.description = description;
+        this.start_data = start_data;
+        this.end_date = end_date;
+        this.created_At = created_At;
+        this.updated_At = updated_At;
+    }
+
     public Long getId() {
         return id;
     }
