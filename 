@@ -1,0 +1,38 @@
+[1mdiff --git a/src/main/java/com/spring/react/springreact/domain/Project.java b/src/main/java/com/spring/react/springreact/domain/Project.java[m
+[1mindex a365783..ea0f007 100644[m
+[1m--- a/src/main/java/com/spring/react/springreact/domain/Project.java[m
+[1m+++ b/src/main/java/com/spring/react/springreact/domain/Project.java[m
+[36m@@ -1,6 +1,10 @@[m
+ package com.spring.react.springreact.domain;[m
+ [m
+[32m+[m[32mimport com.fasterxml.jackson.annotation.JsonFormat;[m
+[32m+[m
+ import javax.persistence.*;[m
+[32m+[m[32mimport javax.validation.constraints.NotBlank;[m
+[32m+[m[32mimport javax.validation.constraints.Size;[m
+ import java.util.Date;[m
+ [m
+ @Entity[m
+[36m@@ -9,13 +13,22 @@[m [mpublic class Project {[m
+     @Id[m
+     @GeneratedValue(strategy = GenerationType.IDENTITY)[m
+     private Long id;[m
+[32m+[m[32m    @NotBlank(message = "Project name is required")[m
+     private String projectName;[m
+[32m+[m[32m    @NotBlank(message = "Project Identifier is required")[m
+[32m+[m[32m    @Size(min = 4, max = 5, message = "Please use 4 to 5 character")[m
+[32m+[m[32m    @Column(updatable = false, unique = true)[m
+     private String projectIdentifier;[m
+[32m+[m[32m    @NotBlank(message = "Project description is required")[m
+     private String description;[m
+[32m+[m[32m    @JsonFormat(pattern = "yyyy-mm-dd")[m
+     private Date start_data;[m
+[32m+[m[32m    @JsonFormat(pattern = "yyyy-mm-dd")[m
+     private Date end_date;[m
+ [m
+[32m+[m[32m    @JsonFormat(pattern = "yyyy-mm-dd")[m
+     private Date created_At;[m
+[32m+[m[32m    @JsonFormat(pattern = "yyyy-mm-dd")[m
+     private Date updated_At;[m
+ [m
+ [m
